@@ -394,7 +394,7 @@ Setiap halaman memiliki fungsi yang berbeda dalam alur penggunaan aplikasi.
 
 ---
 
-## SplashPage
+## 🌟 SplashPage
 
 SplashPage merupakan halaman pertama yang ditampilkan ketika aplikasi dibuka.
 
@@ -443,7 +443,7 @@ Dengan adanya halaman ini, aplikasi memiliki tampilan awal yang lebih realistis 
 
 ---
 
-## LoginPage
+## 🌟 LoginPage
 
 LoginPage digunakan untuk melakukan proses login pengguna sebelum dapat mengakses aplikasi.
 
@@ -490,7 +490,7 @@ Tombol ini menggunakan `widget TextButton` yang akan mengarahkan pengguna ke hal
 
 ---
 
-## RegisterPage
+## 🌟 RegisterPage
 
 `RegisterPage` digunakan untuk membuat akun baru pada aplikasi.
 
@@ -535,7 +535,7 @@ Efek blur ini membuat tampilan form terlihat lebih modern dan menarik.
 
 ---
 
-## HomePage
+## 🌟 HomePage
 
 HomePage merupakan halaman utama aplikasi yang menampilkan seluruh data barang preloved yang tersimpan di database.
 
@@ -631,7 +631,7 @@ Setelah logout, pengguna akan diarahkan kembali ke halaman login.
 
 ---
 
-## FormPage
+## 🌟 FormPage
 
 FormPage digunakan untuk menambahkan barang baru ataupun mengedit data barang yang sudah ada.
 
@@ -683,4 +683,13 @@ Selain itu, aplikasi juga memeriksa apakah harga lebih besar dari 0 sebelum data
 Hal ini memastikan pengguna tidak memasukkan harga yang tidak valid.
 
 ---
+</details>
+
+### Tampilan Keseluruhan Aplikasi dan Alur Penggunaan Aplikasi
+
+<details>
+<summary> Click Here </summary>
+
+achdea
+
 </details>
