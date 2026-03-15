@@ -29,13 +29,11 @@ class _RegisterPageState extends State<RegisterPage> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    /// VALIDASI NAME
     if (name.isEmpty) {
       showMessage("Nama wajib diisi");
       return;
     }
 
-    /// VALIDASI EMAIL
     if (email.isEmpty) {
       showMessage("Email wajib diisi");
       return;
@@ -46,7 +44,6 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    /// VALIDASI PASSWORD
     if (password.isEmpty) {
       showMessage("Password wajib diisi");
       return;
@@ -86,7 +83,6 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// BACKGROUND IMAGE
           SizedBox.expand(
             child: Image.asset(
               "assets/images/onboarding.png",
@@ -94,7 +90,6 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
 
-          /// GLASS CARD
           Center(
             child: SingleChildScrollView(
               child: Padding(
