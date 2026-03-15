@@ -16,7 +16,6 @@ class SplashPage extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                /// IMAGE SECTION
                 SizedBox(
                   height: constraints.maxHeight * 0.45,
                   width: double.infinity,
@@ -26,7 +25,6 @@ class SplashPage extends StatelessWidget {
                   ),
                 ),
 
-                /// CONTENT SECTION
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
