@@ -746,7 +746,7 @@ Hal ini memastikan pengguna tidak memasukkan harga yang tidak valid.
 
 </details>
 
-### Tampilan Keseluruhan Aplikasi dan Alur Penggunaan Aplikasi
+# Tampilan Keseluruhan Aplikasi dan Alur Penggunaan Aplikasi
 
 <details>
 <summary> Click Here </summary>
@@ -761,28 +761,34 @@ Saat aplikasi pertama kali dibuka, pengguna akan melihat halaman Splash Screen y
 
 Halaman ini menampilkan pengenalan singkat aplikasi serta tombol untuk memulai penggunaan aplikasi.
 
-<img src=" " width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/c8f8ca82-734a-47ad-977a-4f3b31f875f6" />
+
+---
 
 2. Registrasi Akun
 
 Jika pengguna belum memiliki akun, pengguna dapat membuat akun baru melalui halaman Register dengan mengisi beberapa informasi berikut:
 
-Nama
-
-Email
-
-Password
+- Nama
+- Email
+- Password
 
 Setelah data diisi dan valid, akun akan dibuat menggunakan Supabase Authentication.
 
-<img src="LINK_GAMBAR_REGISTER" width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/e08754ff-dd35-4bda-9b42-af3f985fca14" />
+
+---
+
 3. Login Pengguna
 
 Setelah akun berhasil dibuat, pengguna dapat melakukan login menggunakan email dan password yang telah didaftarkan.
 
 Jika login berhasil, pengguna akan diarahkan ke halaman utama aplikasi.
 
-<img src="LINK_GAMBAR_LOGIN" width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/794c56db-12c2-4a56-98e8-5115bbc413b4" />
+
+---
+
 4. Halaman Utama Aplikasi
 
 Setelah login berhasil, pengguna akan masuk ke halaman HomePage.
@@ -790,33 +796,35 @@ Setelah login berhasil, pengguna akan masuk ke halaman HomePage.
 Pada halaman ini pengguna dapat melihat seluruh daftar barang preloved yang telah disimpan di database.
 
 Informasi yang ditampilkan pada setiap barang meliputi:
+- Nama barang
+- Harga
+- Kondisi barang
+- Status barang
 
-Nama barang
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/8a450e19-3d8b-4c48-af9c-76ad256846fb" />
 
-Harga
+---
 
-Kondisi barang
-
-Status barang
-
-<img src="LINK_GAMBAR_HOME" width="300">
 5. Menambahkan Barang
 
 Pengguna dapat menambahkan barang baru dengan menekan tombol Floating Action Button (+) yang terdapat pada bagian bawah halaman.
 
 Pengguna kemudian akan diarahkan ke halaman FormPage untuk mengisi data barang seperti:
 
-Nama barang
+- Nama barang
+- Harga jual
+- Kondisi barang
+- Kategori barang
+- Upload foto barang
 
-Harga jual
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/85cdb711-4189-43dd-8660-7508c7ac4ada" />
 
-Kondisi barang
+Barang setelah di tambahkan:
 
-Kategori barang
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/479033ea-7b76-4be6-8cbe-08fd1dce6157" />
 
-Upload foto barang
+---
 
-<img src="LINK_GAMBAR_TAMBAH_BARANG" width="300">
 6. Mengedit Data Barang
 
 Jika pengguna ingin memperbarui informasi barang, pengguna dapat menekan ikon edit pada card barang.
@@ -825,7 +833,14 @@ FormPage akan terbuka dalam mode edit dan field akan otomatis terisi dengan data
 
 Pengguna dapat mengubah informasi barang lalu menekan tombol Update untuk menyimpan perubahan.
 
-<img src="LINK_GAMBAR_EDIT_BARANG" width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/b9840a86-9332-40db-9f7b-4a0b11cbd3b6" />
+
+Barang setelah di edit:
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/3d725d02-9a1a-4df0-a3ac-c1aee7b815e6" />
+
+---
+
 7. Menandai Barang sebagai SOLD
 
 Jika barang telah terjual, pengguna dapat menekan status barang pada card.
@@ -834,20 +849,28 @@ Aplikasi akan menampilkan dialog konfirmasi sebelum mengubah status barang menja
 
 Setelah status berubah, sistem akan otomatis mencatat tanggal penjualan barang.
 
-<img src="LINK_GAMBAR_SOLD" width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/d0cb6069-b43c-4d04-bd25-d852e937af4d" />
+
+Barang setelah di tandai sebagai SOLD:
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/001cb1ff-105f-4126-8871-415e47e5e6c3" />
+
+---
+
 8. Menghapus Barang
 
 Jika barang tidak lagi diperlukan dalam daftar, pengguna dapat menghapus data barang dengan menekan ikon delete.
 
 Aplikasi akan menampilkan konfirmasi terlebih dahulu sebelum data dihapus dari database.
 
-<img src="LINK_GAMBAR_DELETE" width="300">
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/6718ff5c-cd1a-488f-9c8a-16f7755766bd" />
+
+---
+
 9. Logout
 
 Jika pengguna ingin keluar dari aplikasi, pengguna dapat menekan tombol logout pada bagian atas halaman.
 
 Setelah logout, pengguna akan kembali ke halaman login.
-
-<img src="LINK_GAMBAR_LOGOUT" width="300">
 
 </details>
