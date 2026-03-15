@@ -680,9 +680,18 @@ Setelah logout, pengguna akan diarahkan kembali ke halaman login.
 
 ## 🌟 FormPage
 
-FormPage digunakan untuk menambahkan barang baru ataupun mengedit data barang yang sudah ada.
+FormPage digunakan untuk **menambahkan barang baru** ataupun **mengedit data barang yang sudah ada**.
 
 Halaman ini juga menggunakan `StatefulWidget` karena form memiliki data yang dapat berubah.
+
+Tampilan Form Page ketika menambahkan barang baru:
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/2b26fef1-238c-4bbf-8628-b2ccc3358a21" />
+
+Tampilan Form Page ketika mengedit barang yang sudah ada:
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/e1670c21-aebe-45b8-8911-0bf0a4de4d25" />
+
 
 ### Input Data Barang
 
@@ -698,6 +707,8 @@ Input teks menggunakan widget `TextField`, sedangkan pilihan kondisi dan kategor
 ### Upload Foto
 
 Pengguna dapat mengupload gambar menggunakan package `image_picker`.
+
+<img width="384" height="240" alt="Image" src="https://github.com/user-attachments/assets/04305a7c-4080-4182-ac2f-40d8cc1b8422" />
 
 ```
 final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -727,9 +738,12 @@ FilteringTextInputFormatter.digitsOnly
 
 Selain itu, aplikasi juga memeriksa apakah harga lebih besar dari 0 sebelum data disimpan.
 
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/00909646-eb93-4696-8987-ed715a1ae08e" />
+
 Hal ini memastikan pengguna tidak memasukkan harga yang tidak valid.
 
 ---
+
 </details>
 
 ### Tampilan Keseluruhan Aplikasi dan Alur Penggunaan Aplikasi
@@ -737,6 +751,103 @@ Hal ini memastikan pengguna tidak memasukkan harga yang tidak valid.
 <details>
 <summary> Click Here </summary>
 
-achdea
+Pada bagian ini ditampilkan alur penggunaan aplikasi PreLove Notes mulai dari proses registrasi akun hingga pengelolaan data barang preloved.
+
+---
+
+1. Splash Screen
+
+Saat aplikasi pertama kali dibuka, pengguna akan melihat halaman Splash Screen yang berfungsi sebagai halaman pembuka aplikasi.
+
+Halaman ini menampilkan pengenalan singkat aplikasi serta tombol untuk memulai penggunaan aplikasi.
+
+<img src=" " width="300">
+
+2. Registrasi Akun
+
+Jika pengguna belum memiliki akun, pengguna dapat membuat akun baru melalui halaman Register dengan mengisi beberapa informasi berikut:
+
+Nama
+
+Email
+
+Password
+
+Setelah data diisi dan valid, akun akan dibuat menggunakan Supabase Authentication.
+
+<img src="LINK_GAMBAR_REGISTER" width="300">
+3. Login Pengguna
+
+Setelah akun berhasil dibuat, pengguna dapat melakukan login menggunakan email dan password yang telah didaftarkan.
+
+Jika login berhasil, pengguna akan diarahkan ke halaman utama aplikasi.
+
+<img src="LINK_GAMBAR_LOGIN" width="300">
+4. Halaman Utama Aplikasi
+
+Setelah login berhasil, pengguna akan masuk ke halaman HomePage.
+
+Pada halaman ini pengguna dapat melihat seluruh daftar barang preloved yang telah disimpan di database.
+
+Informasi yang ditampilkan pada setiap barang meliputi:
+
+Nama barang
+
+Harga
+
+Kondisi barang
+
+Status barang
+
+<img src="LINK_GAMBAR_HOME" width="300">
+5. Menambahkan Barang
+
+Pengguna dapat menambahkan barang baru dengan menekan tombol Floating Action Button (+) yang terdapat pada bagian bawah halaman.
+
+Pengguna kemudian akan diarahkan ke halaman FormPage untuk mengisi data barang seperti:
+
+Nama barang
+
+Harga jual
+
+Kondisi barang
+
+Kategori barang
+
+Upload foto barang
+
+<img src="LINK_GAMBAR_TAMBAH_BARANG" width="300">
+6. Mengedit Data Barang
+
+Jika pengguna ingin memperbarui informasi barang, pengguna dapat menekan ikon edit pada card barang.
+
+FormPage akan terbuka dalam mode edit dan field akan otomatis terisi dengan data lama.
+
+Pengguna dapat mengubah informasi barang lalu menekan tombol Update untuk menyimpan perubahan.
+
+<img src="LINK_GAMBAR_EDIT_BARANG" width="300">
+7. Menandai Barang sebagai SOLD
+
+Jika barang telah terjual, pengguna dapat menekan status barang pada card.
+
+Aplikasi akan menampilkan dialog konfirmasi sebelum mengubah status barang menjadi SOLD.
+
+Setelah status berubah, sistem akan otomatis mencatat tanggal penjualan barang.
+
+<img src="LINK_GAMBAR_SOLD" width="300">
+8. Menghapus Barang
+
+Jika barang tidak lagi diperlukan dalam daftar, pengguna dapat menghapus data barang dengan menekan ikon delete.
+
+Aplikasi akan menampilkan konfirmasi terlebih dahulu sebelum data dihapus dari database.
+
+<img src="LINK_GAMBAR_DELETE" width="300">
+9. Logout
+
+Jika pengguna ingin keluar dari aplikasi, pengguna dapat menekan tombol logout pada bagian atas halaman.
+
+Setelah logout, pengguna akan kembali ke halaman login.
+
+<img src="LINK_GAMBAR_LOGOUT" width="300">
 
 </details>
