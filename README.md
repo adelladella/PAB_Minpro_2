@@ -402,7 +402,7 @@ Setiap halaman memiliki fungsi yang berbeda dalam alur penggunaan aplikasi.
 
 SplashPage merupakan halaman pertama yang ditampilkan ketika aplikasi dibuka.
 
-SS 
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/6c4d92bd-73ee-42fd-aa68-a3d559e4d225" />
 
 Halaman ini berfungsi sebagai tampilan pembuka aplikasi sebelum pengguna masuk ke proses login atau pembuatan akun.
 
@@ -418,11 +418,22 @@ Gambar ini berfungsi sebagai elemen visual untuk memperkenalkan aplikasi kepada 
 
 Ukuran gambar diatur menggunakan SizedBox agar menyesuaikan ukuran layar perangkat.
 
+Tampilan menggunakan Desktop:
+
+<img width="1919" height="1020" alt="Image" src="https://github.com/user-attachments/assets/c1759117-6953-42b6-a802-cd2324e9ed24" />
+
+Tampilan menggunakan Ipad:
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/10f84f7b-39ad-46c7-953e-b25cc17f9d3e" />
+
+
 ### 2. Bagian Konten
 
 Bagian bawah halaman berisi teks dan tombol navigasi yang mengarahkan pengguna ke halaman berikutnya.
 
 Teks utama ditampilkan menggunakan font _Playfair Display_ melalui package `GoogleFonts`.
+
+
 
 Widget yang digunakan antara lain:
 - Column untuk menyusun elemen secara vertikal
@@ -436,6 +447,8 @@ Widget yang digunakan antara lain:
 
 Tombol _**Get Started**_ akan mengarahkan pengguna ke halaman `RegisterPage`.
 
+<img width="400" height="101" alt="Image" src="https://github.com/user-attachments/assets/c4d8a904-f2a7-4e3a-93ea-222a7b6af536" />
+
 ```
 Navigator.push(
   context,
@@ -445,6 +458,8 @@ Navigator.push(
 
 Sedangkan tombol _**Login**_ akan mengarahkan pengguna ke halaman `LoginPage`.
 
+<img width="400" height="55" alt="Image" src="https://github.com/user-attachments/assets/9c5ae161-de76-4197-8b31-be27b9baa715" />
+
 Dengan adanya halaman ini, aplikasi memiliki tampilan awal yang lebih realistis seperti aplikasi mobile pada umumnya.
 
 ---
@@ -452,6 +467,8 @@ Dengan adanya halaman ini, aplikasi memiliki tampilan awal yang lebih realistis 
 ## 🌟 LoginPage
 
 LoginPage digunakan untuk melakukan proses login pengguna sebelum dapat mengakses aplikasi.
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/c39182dd-94b3-4a92-a925-6e72f321fcde" />
 
 Halaman ini meminta pengguna untuk memasukkan:
 - email
