@@ -18,432 +18,669 @@ Aplikasi ini dibuat sebagai solusi sederhana bagi individu yang sering menjual k
 
 Secara umum, PreLove Notes berfungsi sebagai aplikasi manajemen data barang preloved berbasis CRUD (Create, Read, Update, Delete). Aplikasi ini dirancang dengan tampilan yang sederhana, serta alur penggunaan yang mudah dipahami oleh pengguna awam sekalipun.
 
-# Struktur File dan Peran Masing-Masing File
+# Yang di Kembangkan Lebih Lanjut pada Mini Project 2  
 
 <details>
 <summary> Click Here </summary>
 
-Aplikasi PreLove Notes dikembangkan menggunakan struktur **multi-file** untuk memisahkan logika dan tampilan agar kode lebih terorganisir dan mudah dipahami.
+Pada _Mini Project 1_, aplikasi PreLove Notes masih menggunakan **penyimpanan data lokal** yang berada langsung di dalam aplikasi. Data barang disimpan dalam bentuk `List<Map<String, dynamic>>` sehingga hanya tersimpan selama aplikasi berjalan.
 
-Struktur utama project terdiri dari tiga file Dart utama:
+Pada _Mini Project 2_, kini aplikasi dikembangkan lebih lanjut agar lebih mendekati struktur aplikasi mobile yang sebenarnya. Beberapa perubahan utama dilakukan baik dari sisi arsitektur aplikasi maupun fitur yang tersedia.
 
-- _main.dart_
-- _home_page.dart_
-- _form_page.dart_
+Beberapa pengembangan yang dilakukan antara lain sebagai berikut.
+- Integrasi Database Supabase
+- Data barang tidak lagi disimpan di dalam list lokal, melainkan disimpan di database Supabase. Dengan adanya integrasi ini, data barang dapat disimpan secara permanen dan dapat diambil kembali ketika aplikasi dijalankan.
+- Seluruh proses pengelolaan data kini dilakukan melalui operasi CRUD yang terhubung langsung dengan Supabase.
 
-Berikut penjelasan masing-masing file:
-
----
-
-## 1. _main.dart_
-
-File ini merupakan _entry point_ (titik awal) dari aplikasi.
-
-Di dalam file ini terdapat:
-
-- Fungsi main() yang menjalankan aplikasi menggunakan `runApp(). `
-- _Class MyApp_ yang membungkus aplikasi dengan MaterialApp.
-- Pengaturan halaman awal (_home_) yang diarahkan ke HomePage.
-
-Peran utama `main.dart` adalah:
-
-- Menginisialisasi aplikasi Flutter.
-- Menentukan halaman pertama yang akan ditampilkan.
-- Mengatur konfigurasi dasar aplikasi.
-
-File ini tidak berisi logika CRUD, tetapi hanya berfungsi sebagai penghubung awal aplikasi.
+Operasi yang tersedia meliputi:
+- menambahkan barang baru
+- menampilkan daftar barang
+- memperbarui informasi barang
+- menghapus barang dari database
 
 ---
 
-## 2. _home_page.dart_
+### Sistem Login dan Register
 
-File ini berisi tampilan dan logika utama aplikasi (_HomePage_).
+Pada versi sebelumnya aplikasi belum memiliki sistem autentikasi. Pada Mini Project 2 ditambahkan fitur login dan register menggunakan _**Supabase Authentication**_.
 
-HomePage menggunakan _StatefulWidget_ karena:
+Pengguna dapat membuat akun baru menggunakan _email_ dan _password_, kemudian _login_ ke dalam aplikasi menggunakan akun tersebut.
 
-- Data barang dapat berubah (tambah, edit, hapus, ubah status).
-- Tampilan harus diperbarui secara dinamis menggunakan setState().
-
-Fungsi utama file ini:
-
-- Menyimpan seluruh data barang dalam `List<Map<String, dynamic>>`.
-- Menampilkan daftar barang menggunakan `ListView.builder`.
-- Mengatur fitur filter kategori.
-- Mengatur status _Available_ dan _SOLD_.
-- Menangani fungsi _Create, Read, Update,_ dan _Delete_.
-- Mengatur navigasi ke _FormPage_ menggunakan `Navigator.push()`.
-
-Semua perubahan data diproses di file ini agar tampilan selalu sinkron dengan isi list.
-
-`home_page.dart` saya gunakan sebagai pusat manajemen data aplikasi.
+Dengan adanya fitur ini, aplikasi menjadi lebih realistis karena setiap pengguna dapat mengakses aplikasi menggunakan akun masing-masing.
 
 ---
 
-## 3. _form_page.dart_
+### Struktur Project yang Lebih Terorganisir
 
-File ini berisi halaman _FormPage_ yang digunakan untuk:
+Pada Mini Project 1, sebagian besar kode masih berada di beberapa file utama saja. 
 
-- Menambahkan barang baru (_Create_)
-- Mengedit barang yang sudah ada (_Update_)
+Pada Mini Project 2, struktur project diperbaiki dengan memisahkan kode berdasarkan tanggung jawabnya.
 
-FormPage juga menggunakan _StatefulWidget_ karena:
+Struktur utama project sekarang terdiri dari beberapa folder seperti:
+- pages
+- services
+- controllers
 
-- Menggunakan _TextEditingController_ untuk input.
-- Memerlukan _state_ untuk dropdown dan gambar.
-- Perlu menangani perubahan data sebelum dikirim kembali ke _HomePage_.
+Pemisahan ini membantu agar kode lebih mudah dibaca, lebih rapi, dan lebih mudah dikembangkan.
 
-Fungsi utama file ini:
+---
 
-- Menampilkan form input (Nama, Harga, Kondisi, Kategori).
-- Menangani upload foto menggunakan `image_picker`.
-- Mengemas data dalam bentuk Map.
-- Mengirim data kembali ke _HomePage_ melalui parameter _onSave_.
-- Mengatur perbedaan mode **Tambah** dan **Edit**.
+### Dark Mode dan Light Mode
 
-FormPage belum menyimpan data secara permanen, tetapi hanya mengirim data kembali ke _HomePage_ untuk dikelola.
+Aplikasi sekarang mendukung dua mode tampilan yaitu _**Light Mode**_ dan _**Dark Mode**_.
+
+Pengguna dapat mengganti tema langsung dari halaman utama melalui menu _**Toggle Theme**_. Perubahan tema ini diatur menggunakan _GetX Theme Controller_ sehingga perubahan tampilan dapat diterapkan secara global pada seluruh aplikasi.
+
+Pemisahan ini membantu agar kode lebih mudah dibaca, lebih rapi, dan lebih mudah dikembangkan.
+
+---
+
+### Validasi Input yang Lebih Spesifik
+
+Form input pada aplikasi kini dilengkapi dengan validasi yang lebih jelas agar pengguna tidak dapat memasukkan data secara sembarangan.
+
+Beberapa validasi yang diterapkan antara lain:
+- nama barang tidak boleh kosong
+- email harus memiliki format yang benar
+- password minimal 6 karakter
+- harga hanya boleh diisi angka
+- harga harus lebih dari 0
+
+Validasi ini membantu menjaga kualitas data yang disimpan di database.
+
+---
+
+### Upload dan Penyimpanan Gambar
+
+Pengguna sekarang dapat menambahkan gambar barang melalui galeri perangkat menggunakan package _**image_picker**_.
+
+Gambar yang dipilih akan dikonversi ke dalam format _Base64_ sebelum disimpan ke database. Ketika data ditampilkan kembali pada halaman utama, gambar tersebut akan ditampilkan menggunakan _Image.memory_.
+
+---
+
+### Splash Screen
+
+Aplikasi sekarang memiliki halaman pembuka berupa _**Splash Screen**_. Halaman ini ditampilkan ketika aplikasi pertama kali dijalankan.
+
+Splash screen berfungsi sebagai tampilan pengenalan aplikasi sebelum pengguna masuk ke halaman login atau register.
 
 ---
 
 </details>
 
-# Fitur dan Penjelasan Lebih Lanjut Pada Tiap Page
+# Struktur Folder dan Penjelasan File
 
 <details>
 <summary>Click Here</summary>
 
-Aplikasi PreLove Notes memiliki beberapa fitur utama yang terbagi ke dalam _HomePage_ dan _FormPage_. Pada bagian ini tidak hanya dijelaskan fitur yang tersedia, tetapi juga bagaimana fitur tersebut diimplementasikan di dalam kode program.
+Untuk membuat kode lebih terorganisir, project PreLove Notes menggunakan struktur folder yang memisahkan tampilan, logika aplikasi, dan komunikasi dengan backend.
 
----
-
-## 1. HomePage
-
-_HomePage_ merupakan halaman utama aplikasi yang menampilkan seluruh data barang preloved yang telah diinput oleh pengguna.
-
-_HomePage_ menggunakan _StatefulWidget_ karena data yang ditampilkan bersifat dinamis dan dapat berubah (tambah, edit, hapus, ubah status).
-
-Data barang disimpan dalam bentuk:
-
-`List<Map<String, dynamic>> items = [];`
-
-Setiap barang memiliki atribut:
-
-- nama
-- harga
-- kondisi
-- kategori
-- imagePath
-- isSold
-- soldDate
-
-Perubahan data dikontrol menggunakan `setState()` agar tampilan otomatis diperbarui.
-
----
-
-### a. Nama Aplikasi
-
-Pada bagian paling atas terdapat nama aplikasi **“PreLove Notes”** sebagai identitas utama.
-
-<img width="357" height="41" alt="image" src="https://github.com/user-attachments/assets/67d273fc-7ddb-4ffb-b315-64ce58a1938f" />
-
-Bagian ini dibuat menggunakan _widget Row_ dan _Text_ untuk menampilkan _title_ secara konsisten pada bagian atas halaman.
-
----
-
-### b. Welcome Section
-
-Terdapat sapaan kepada pengguna berupa:
-
-<img width="358" height="36" alt="image" src="https://github.com/user-attachments/assets/28f55b53-6dd0-4e65-a113-249c7ab195de" />
-
-Nama "Adella" saat ini digunakan sebagai placeholder. Ke depannya bagian ini direncanakan akan terintegrasi dengan sistem login agar nama yang tampil menyesuaikan dengan user yang sedang menggunakan aplikasi.
-
-Di bawahnya terdapat kalimat:
-
-<img width="357" height="28" alt="image" src="https://github.com/user-attachments/assets/a3d2d256-0b0d-4d59-a6c3-58a6d4749e6e" />
-
-Bagian ini dibuat menggunakan Text dan Icon untuk memberikan kesan personal serta meningkatkan pengalaman pengguna.
-
----
-
-### c. Fitur Filter Kategori
-
-Di bawah bagian sapaan terdapat fitur filter berbentuk _horizontal scroll_.
-
-<img width="357" height="50" alt="image" src="https://github.com/user-attachments/assets/4b250e83-5b6a-47c5-84ee-a59599370a97" />
-
-Filter ini dibuat menggunakan:
-
-`ListView (scrollDirection: Axis.horizontal)`
-
-Kategori yang tersedia:
-
-- Semua
-- Tas
-- Atasan
-- Bawahan
-- Sepatu
-- Aksesoris
-
-Fitur filter disini bekerja dengan menyaring list menggunakan:
-
-`items.where((item) => item["kategori"] == selectedCategory)`
-
-- Jika pengguna memilih salah satu kategori tertentu (misalnya Tas), maka hanya barang dengan kategori tersebut yang akan ditampilkan.
-
-Sistem memeriksa nilai kategori yang dipilih dan menampilkan data sesuai dengan kategori tersebut menggunakan metode penyaringan pada list.
-
-Fitur ini dirancang agar pengguna dapat melihat seluruh data terlebih dahulu, kemudian menyaring sesuai kebutuhan untuk mempermudah pengelolaan barang.
-
----
-
-### d. Daftar Barang (Read)
-
-Data barang ditampilkan menggunakan:
-
-`ListView.builder()`
-
-Widget ini memungkinkan daftar barang dibuat secara dinamis sesuai jumlah data dalam list.
-
-Setiap card menampilkan:
-
-- Foto barang (_Image.file_)
-- Nama barang
-- Harga jual (format Rupiah)
-- Kondisi barang
-- Status (**_Available_**/**_SOLD_**)
-
-<img width="357" height="146" alt="image" src="https://github.com/user-attachments/assets/ba0584d7-22c1-4013-85c3-7946991a9a77" />
-
-Harga diformat menggunakan package intl:
-
-`NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ')`
-
-Sehingga input seperti 250000 akan otomatis tampil sebagai Rp 250.000.
-
----
-
-### e. Status Available & SOLD
-
-Setiap barang memiliki status:
-
-- _Available_ = Barang masih tersedia.
-
-<img width="357" height="146" alt="image" src="https://github.com/user-attachments/assets/5030a77c-2285-4e41-b19a-20230b8de70c" />
-
-- _SOLD_ = Barang sudah terjual.
-
-<img width="357" height="150" alt="image" src="https://github.com/user-attachments/assets/7adced2e-0ebc-49fe-abd6-a84890605c86" />
-
-Status ini dibuat interaktif menggunakan _GestureDetector_.  
-Ketika card ditekan, fungsi `toggleSold()` akan dijalankan:
-
-`items[index]["isSold"] = !items[index]["isSold"];`
-
-Jika berubah menjadi _SOLD_, sistem otomatis menyimpan tanggal menggunakan `DateTime.now()`.
-
-<img width="359" height="51" alt="image" src="https://github.com/user-attachments/assets/7dc090cb-fc8f-436d-9f82-95889b0e118b" />
-
-Fitur ini tidak hanya mempercantik tampilan tetapi juga memiliki fungsi manajemen stok sederhana.
-
----
-
-### f. Tombol Tambah (+)
-
-Di bagian kanan bawah terdapat `FloatingActionButton (+).`
-
-<img width="434" height="101" alt="image" src="https://github.com/user-attachments/assets/c9acca80-ee50-4fe0-99a0-97a75d1d5c75" />
-
-Ketika ditekan, aplikasi akan menjalankan:
-
-`Navigator.push()`
-
-untuk berpindah ke FormPage dalam mode tambah barang (_Create_).
-
----
-
-### g. Icon Edit & Delete
-
-Pada setiap card terdapat:
-
-- Icon Pencil (Edit)  
-  Mengarahkan ke FormPage dalam mode Edit.
-
-<img width="133" height="57" alt="image" src="https://github.com/user-attachments/assets/bde3abe0-42e2-4920-879a-a13909cb28a2" />
-
-- Icon Delete (Hapus)  
-  Menghapus data menggunakan:
-
-<img width="115" height="60" alt="image" src="https://github.com/user-attachments/assets/e75e72ff-d8d7-4957-a601-8607cb5877c2" />
-
-`items.removeAt(index);`
-
-Mode Edit bekerja dengan mengirim data lama ke _FormPage_ melalui parameter _barangLama_.
-
----
-
-## 🔹 2. FormPage (Tambah & Edit Barang)
-
-_FormPage_ digunakan untuk menambahkan dan mengedit data barang.
-
-_FormPage_ juga menggunakan StatefulWidget karena memerlukan TextEditingController dan state dinamis.
-
----
-
-### 1. Upload Foto
-
-Fitur upload foto menggunakan package `image_picker`.
-
-Gambar yang dipilih disimpan dalam bentuk _path_:
-
-`selectedImage?.path`
-
-Kemudian ditampilkan kembali di HomePage menggunakan _Image.file()_.
-
-Namun, saat ini fitur ini masih dalam tahap pengembangan dan belum dapat digunakan lebih lanjut.
-
----
-
-### 2. Nama Barang
-
-Input dilakukan menggunakan _TextField_ dengan `TextEditingController`.
-
-_Controller_ ini memungkinkan:
-
-- Mengambil input pengguna
-- Mengisi ulang field saat mode edit
-
----
-
-### 3. Harga Jual
-
-Pengguna memasukkan angka tanpa titik atau koma.
-
-Saat disimpan, data diformat menggunakan _intl_ menjadi format Rupiah.
-
-Contoh:
+Struktur utama project pada folder lib adalah sebagai berikut.
 
 ```
-Input: 250000
-Output: Rp 250.000
+lib
+│
+├── controllers
+│   └── theme_controller.dart
+│
+├── pages
+│   ├── form_page.dart
+│   ├── home_page.dart
+│   ├── login_page.dart
+│   ├── register_page.dart
+│   └── splash_page.dart
+│
+├── services
+│   ├── auth_service.dart
+│   └── supabase_service.dart
+│
+└── main.dart
 ```
 
----
+Selain itu, project juga menggunakan file konfigurasi:
 
-### 4. Kondisi / Grade Barang (Dropdown)
+`.env`
 
-DropdownButton digunakan untuk memilih grade atau tingkat kondisi barang.
-
-Dalam aplikasi ini, istilah kondisi disesuaikan dengan standar profesional yang umum digunakan dalam dunia jual beli preloved, yaitu sistem grading.
-
-Pilihan yang tersedia pada dropdown:
-
-1. **Grade A (Mint)**
-   Barang dalam kondisi sangat baik, terlihat seperti baru, dan tidak memiliki kekurangan atau minus sama sekali.
-
-2. **Grade B (VGC – Very Good Condition)**
-   Barang memiliki tanda pemakaian yang wajar, namun masih berfungsi dengan baik dan tetap layak digunakan.
-
-3. **Grade C (Fair)**
-   Barang memiliki kekurangan seperti lecet atau noda, namun masih dapat digunakan. Biasanya harga jual lebih terjangkau dibanding grade yang lebih tinggi.
-
-Pada implementasi kode, yang ditampilkan di dropdown adalah:
-
-<img width="358" height="181" alt="image" src="https://github.com/user-attachments/assets/eaa4a3d8-f681-4857-af75-0e575c7a298a" />
-
-- Grade A (Mint)
-- Grade B (VGC)
-- Grade C (Fair)
-
-Nilai yang dipilih akan disimpan dalam variabel kondisi dan ditampilkan kembali pada HomePage sebagai bagian dari informasi detail barang.
-
-Penggunaan sistem grading ini bertujuan agar aplikasi terlihat lebih profesional dan sesuai dengan praktik umum dalam manajemen barang preloved.
+yang digunakan untuk menyimpan Supabase URL dan API Key secara aman, dan setiap folder memiliki fungsi yang berbeda agar kode tidak tercampur dalam satu tempat.
 
 ---
 
-### 5. Kategori (Dropdown)
 
-_DropdownButton_ juga digunakan untuk memilih kategori:
+## 1. Main.dart
+  
+File main.dart merupakan titik awal aplikasi. Semua proses awal aplikasi dijalankan dari file ini.
 
-<img width="358" height="256" alt="image" src="https://github.com/user-attachments/assets/93912dc3-df3f-4aaf-897f-bd7ecdef6673" />
+Beberapa proses penting yang dilakukan pada file ini antara lain:
 
-- Tas
-- Atasan
-- Bawahan
-- Sepatu
-- Aksesoris
+### a. Inisialisasi Flutter
+`WidgetsFlutterBinding.ensureInitialized();`
 
-Kategori ini terhubung langsung dengan fitur filter di _HomePage_.
-
-Barang yang ditambahkan otomatis muncul dalam kategori yang sesuai.
+Kode ini memastikan Flutter sudah siap menjalankan proses asynchronous sebelum aplikasi dimulai.
 
 ---
 
-### 6. Tombol Simpan (Create)
+### b. Membaca File Environment
 
-Saat tombol Simpan ditekan:
+`await dotenv.load();`
 
-<img width="356" height="61" alt="image" src="https://github.com/user-attachments/assets/fb28015b-0d24-4d2b-992b-1a6ad894ed78" />
+Kode ini digunakan untuk membaca file .env yang berisi konfigurasi Supabase seperti URL dan API Key.
 
-- Data dikemas dalam bentuk Map
-- Dikirim kembali ke HomePage
-- Ditambahkan ke list menggunakan `items.add()`
-- Halaman kembali menggunakan `Navigator.pop()`
+Dengan menggunakan .env, informasi sensitif tidak perlu ditulis langsung di dalam kode program.
+
 
 ---
 
-### 7. Mode Edit (Update)
-
-Jika _FormPage_ dibuka dalam mode edit:
-
-<img height="500" alt="iPhone-13-PRO-localhost (6)" src="https://github.com/user-attachments/assets/c60b9177-bd85-4164-a913-af2011f98e1d" />
-
-- Field otomatis terisi data lama
-- Judul berubah menjadi "Edit Barang"
-- Tombol berubah menjadi "Update"
-
-Saat Update ditekan:
-
-`items[index] = barangBaru;`
-
-Data lama diganti dan langsung diperbarui di _HomePage_.
-
----
-
-## Implementasi CRUD
-
-Aplikasi ini telah menerapkan konsep CRUD secara lengkap:
-
-- Create untuk Menambahkan barang melalui FormPage
-- Read untuk Menampilkan barang dengan ListView.builder
-- Update untuk Mengedit data melalui mode Edit
-- Delete untuk Menghapus barang dari list
-
-Seluruh proses dikelola menggunakan _StatefulWidget_ dan _setState_ tanpa database eksternal.
-
----
-
-## Multi Page Navigation
-
-Navigasi antar halaman menggunakan:
+### c. Inisialisasi Supabase
 
 ```
-Navigator.push()
-Navigator.pop()
+await Supabase.initialize(
+  url: dotenv.env['SUPABASE_URL']!,
+  anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+);
 ```
 
-Alur navigasi:
+Kode ini menghubungkan aplikasi Flutter dengan database Supabase sehingga aplikasi dapat melakukan operasi CRUD.
 
-HomePage → FormPage (Tambah Barang)  
-HomePage → FormPage (Edit Barang)  
-FormPage → Kembali ke HomePage setelah Simpan/Update
+---
+
+### d. Inisialisasi Theme Controller
+
+`Get.put(ThemeController());`
+
+Kode ini digunakan untuk mendaftarkan `ThemeController` agar dapat digunakan di seluruh aplikasi.
+
+Controller ini bertanggung jawab untuk mengatur perubahan tema antara light mode dan dark mode.
+
+---
+
+### e. Menjalankan Aplikasi
+
+`runApp(const MyApp());`
+
+Widget MyApp menjadi root widget dari seluruh aplikasi.
+
+---
+
+### f. Widget MyApp
+
+MyApp menggunakan GetMaterialApp karena aplikasi memanfaatkan GetX untuk mengatur state tema.
+
+Pengaturan tema aplikasi dilakukan menggunakan kode berikut.
+
+```
+themeMode: themeController.isDark.value
+    ? ThemeMode.dark
+    : ThemeMode.light,
+```
+
+Jika nilai `isDark` bernilai `true` maka aplikasi menggunakan _dark mode_, jika `false` maka aplikasi menggunakan _light mode_.
+
+---
+
+### g. Pengaturan Light Mode
+
+Light mode menggunakan warna yang lebih terang seperti:
+- background krem
+- card berwarna putih
+- icon coklat
+
+Font utama yang digunakan adalah Poppins dari Google Fonts.
+
+### h. Pengaturan Dark Mode
+
+Dark mode menggunakan warna yang lebih gelap seperti:
+- background coklat gelap
+- card berwarna lebih gelap
+- icon berwarna terang
+
+Mode ini membantu pengguna menggunakan aplikasi dengan lebih nyaman pada kondisi pencahayaan rendah.
+
+---
+
+### i. Halaman Awal Aplikasi
+
+`home: const SplashPage(),`
+
+Halaman pertama yang ditampilkan ketika aplikasi dibuka adalah `SplashPage`.
+
+Halaman ini berfungsi sebagai tampilan pembuka sebelum pengguna masuk ke halaman login atau register.
+
+---
+
+## 2. Folder Services
+  
+Folder services berisi kode yang bertugas menghubungkan aplikasi dengan Supabase.
+
+Dengan memisahkan kode database ke dalam folder ini, halaman aplikasi tidak perlu langsung menangani logika database.
+
+Folder ini berisi dua file utama.
+
+1. `auth_service.dart`
+2. `supabase_service.dart`
+
+---
+
+### 2.1. `auth_service.dart`
+
+File ini bertanggung jawab untuk menangani autentikasi pengguna menggunakan Supabase Auth.
+
+Class utama pada file ini adalah `AuthService`.
+
+Class ini menyimpan instance Supabase client yang digunakan untuk mengakses layanan autentikasi.
+
+```
+final supabase = Supabase.instance.client;
+```
+
+Beberapa fungsi yang tersedia pada file ini antara lain:
+
+---
+
+### a. Register
+
+Digunakan untuk membuat akun baru menggunakan email dan password.
+
+`supabase.auth.signUp(email: email, password: password);`
+
+### b. Login
+
+Digunakan untuk memverifikasi akun pengguna yang sudah terdaftar.
+
+`supabase.auth.signInWithPassword(email: email, password: password);`
+
+### c. Logout
+
+Digunakan untuk mengakhiri session login pengguna.
+
+`supabase.auth.signOut();`
+
+### 2.2. supabase_service.dart
+
+File ini menangani seluruh operasi CRUD data barang pada database Supabase.
+
+Data barang disimpan pada tabel bernama _items_.
+
+Class utama pada file ini adalah `SupabaseService`.
+
+### a. Mengambil Data Barang'
+
+`supabase.from('items').select();`
+
+Digunakan untuk mengambil seluruh data barang dari database dan menampilkannya pada halaman utama.
+
+### b. Menambahkan Data Barang
+
+`supabase.from('items').insert(item);`
+
+Digunakan ketika pengguna menambahkan barang baru melalui halaman form.
+
+### c. Mengupdate Data Barang
+
+`supabase.from('items').update(item).eq('id', id);`
+
+Digunakan ketika pengguna mengedit informasi barang.
+
+### e. Menghapus Data Barang
+
+`supabase.from('items').delete().eq('id', id);`
+
+Digunakan ketika pengguna menghapus barang dari daftar.
+
+---
+
+## 3. Folder Controllers
+
+Folder controllers digunakan untuk menyimpan logic yang mengatur state aplikasi.
+
+Pada aplikasi ini controller digunakan untuk mengatur tema aplikasi.
+
+File yang terdapat pada folder ini adalah:
+
+`theme_controller.dart`
+
+---
+
+### 3.1 theme_controller.dart
+
+File ini digunakan untuk mengatur perubahan tema antara Light Mode dan Dark Mode.
+
+Controller ini menggunakan GetX sebagai state management.
+
+Class utama pada file ini adalah `ThemeController`.
+
+`class ThemeController extends GetxController`
+
+Controller ini memiliki variabel reactive bernama `isDark`.
+
+`var isDark = false.obs;`
+
+Variabel `.obs` menandakan bahwa nilainya bersifat _reactive_ sehingga perubahan nilainya akan langsung mempengaruhi tampilan aplikasi.
+
+### a. Mengubah Tema
+
+Perubahan tema dilakukan melalui fungsi berikut.
+
+`void toggleTheme()`
+
+Ketika fungsi ini dipanggil, nilai `isDark` akan berubah dan aplikasi akan mengganti mode tema antara _light mode_ dan _dark mode_.
+
+Fungsi ini dipanggil dari halaman _HomePage_ melalui menu `Toggle Theme`.
 
 ---
 
 </details>
 
-# Tampilan Keseluruhan Aplikasi
+# Penjelasan Setiap Halaman Aplikasi
 
 <details>
 <summary> Click Here </summary>
 
+Folder pages berisi seluruh tampilan utama aplikasi.
+Setiap file pada folder ini merepresentasikan satu halaman yang dapat diakses oleh pengguna.
+
+Halaman yang tersedia pada aplikasi PreLove Notes antara lain:
+
+1. SplashPage
+
+2. LoginPage
+
+3. RegisterPage
+
+4. HomePage
+
+5. FormPage
+
+Setiap halaman memiliki fungsi yang berbeda dalam alur penggunaan aplikasi.
+
+---
+
+## SplashPage
+
+SplashPage merupakan halaman pertama yang ditampilkan ketika aplikasi dibuka.
+
+Halaman ini berfungsi sebagai tampilan pembuka aplikasi sebelum pengguna masuk ke proses login atau pembuatan akun.
+
+Pada halaman ini terdapat dua bagian utama yaitu:
+
+### 1. Bagian Gambar
+
+Pada bagian atas halaman terdapat gambar yang ditampilkan menggunakan widget:
+
+`Image.asset()`
+
+Gambar ini berfungsi sebagai elemen visual untuk memperkenalkan aplikasi kepada pengguna.
+
+Ukuran gambar diatur menggunakan SizedBox agar menyesuaikan ukuran layar perangkat.
+
+### 2. Bagian Konten
+
+Bagian bawah halaman berisi teks dan tombol navigasi yang mengarahkan pengguna ke halaman berikutnya.
+
+Teks utama ditampilkan menggunakan font _Playfair Display_ melalui package `GoogleFonts`.
+
+Widget yang digunakan antara lain:
+- Column untuk menyusun elemen secara vertikal
+- Text untuk menampilkan judul dan deskripsi
+- ElevatedButton untuk tombol utama
+- TextButton untuk navigasi tambahan
+
+### Navigasi ke Halaman Berikutnya
+
+`SplashPage` menyediakan dua tombol utama.
+
+Tombol _**Get Started**_ akan mengarahkan pengguna ke halaman `RegisterPage`.
+
+```
+Navigator.push(
+  context,
+  MaterialPageRoute(builder: (_) => const RegisterPage()),
+);
+```
+
+Sedangkan tombol _**Login**_ akan mengarahkan pengguna ke halaman `LoginPage`.
+
+Dengan adanya halaman ini, aplikasi memiliki tampilan awal yang lebih realistis seperti aplikasi mobile pada umumnya.
+
+---
+
+## LoginPage
+
+LoginPage digunakan untuk melakukan proses login pengguna sebelum dapat mengakses aplikasi.
+
+Halaman ini meminta pengguna untuk memasukkan:
+- email
+- password
+
+Input tersebut diambil menggunakan `TextEditingController`.
+
+### Input Field
+
+Form login menggunakan widget `TextField` untuk mengambil input dari pengguna.
+
+Beberapa komponen yang digunakan pada field antara lain:
+
+- `prefixIcon` untuk menampilkan icon email dan password
+- `hintText` sebagai _placeholder_
+- `OutlineInputBorder` untuk membuat tampilan field lebih rapi
+
+### Proses Login
+
+Ketika tombol login ditekan, aplikasi akan memanggil fungsi login dari `AuthService`.
+
+```
+await authService.login(email, password);
+```
+
+Jika login berhasil, pengguna akan diarahkan ke halaman `HomePage`.
+
+```
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(builder: (_) => const HomePage()),
+);
+```
+
+Jika login gagal, aplikasi akan menampilkan pesan kesalahan menggunakan `SnackBar`.
+
+### Navigasi ke RegisterPage
+
+Pada bagian bawah halaman terdapat tombol untuk pengguna yang belum memiliki akun.
+
+Tombol ini menggunakan `widget TextButton` yang akan mengarahkan pengguna ke halaman `RegisterPage`.
+
+---
+
+## RegisterPage
+
+`RegisterPage` digunakan untuk membuat akun baru pada aplikasi.
+
+Pengguna diminta untuk mengisi tiga field utama:
+- nama
+- email
+- password
+
+Semua input diambil menggunakan `TextEditingController`.
+
+### Validasi Input
+
+Sebelum proses registrasi dilakukan, aplikasi terlebih dahulu melakukan validasi terhadap input yang dimasukkan.
+
+Validasi yang diterapkan antara lain:
+- nama tidak boleh kosong
+- email tidak boleh kosong
+- email harus memiliki format yang benar
+- password minimal 6 karakter
+
+Jika ada input yang tidak valid, aplikasi akan menampilkan pesan menggunakan `SnackBar`.
+
+### Proses Registrasi
+
+Jika semua input valid, aplikasi akan memanggil fungsi register dari `AuthService`.
+
+```
+await authService.register(email, password);
+```
+
+Supabase kemudian akan membuat akun baru untuk pengguna.
+
+Setelah registrasi berhasil, pengguna akan diarahkan ke halaman `LoginPage`.
+
+### Tampilan Glass Card
+
+RegisterPage menggunakan efek _glassmorphism_ dengan memanfaatkan widget:
+- BackdropFilter
+- ClipRRect
+
+Efek blur ini membuat tampilan form terlihat lebih modern dan menarik.
+
+---
+
+## HomePage
+
+HomePage merupakan halaman utama aplikasi yang menampilkan seluruh data barang preloved yang tersimpan di database.
+
+Halaman ini menggunakan `StatefulWidget` karena data barang dapat berubah ketika pengguna menambahkan, mengedit, atau menghapus data.
+
+### Mengambil Data dari Supabase
+
+Ketika halaman pertama kali dibuka, aplikasi akan memanggil fungsi berikut.
+
+`fetchItems();`
+
+Fungsi ini mengambil data dari database menggunakan `SupabaseService`.
+
+```
+final data = await supabaseService.getItems();
+```
+
+Data kemudian disimpan ke dalam variabel items dan ditampilkan pada halaman.
+
+### Menampilkan Daftar Barang
+
+Data barang ditampilkan menggunakan widget:
+
+`ListView.builder`
+
+Widget ini digunakan untuk menampilkan daftar data secara dinamis berdasarkan jumlah data yang tersedia.
+
+Setiap item ditampilkan dalam bentuk card barang yang berisi:
+- gambar barang
+- nama barang
+- harga
+- kondisi barang
+- status barang
+
+### Format Harga Rupiah
+
+Harga barang diformat menggunakan package `intl`.
+
+```
+NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ')
+```
+
+Dengan format ini, angka seperti `250000` akan ditampilkan sebagai:
+
+`Rp 250.000`
+
+### Status Barang
+
+Setiap barang memiliki dua status yaitu:
+1. Available
+2. SOLD
+
+Jika barang sudah terjual, maka status akan berubah menjadi _**SOLD**_ dan sistem akan menyimpan **tanggal penjualan**.
+
+Tanggal tersebut ditampilkan menggunakan format:
+
+```
+13 Mar 2026
+```
+
+### Filter Kategori
+
+HomePage juga memiliki fitur filter kategori yang ditampilkan menggunakan horizontal scroll.
+
+Kategori yang tersedia antara lain:
+- Tas
+- Atasan
+- Bawahan
+- Sepatu
+- Aksesoris
+
+Filter ini dibuat menggunakan widget `ListView` dengan arah scroll _horizontal_.
+
+### Toggle Theme
+
+Pada bagian menu terdapat fitur Toggle Theme yang digunakan untuk mengganti tampilan antara _light mode_ dan _dark mode_.
+
+Fitur ini memanggil fungsi dari `ThemeController`.
+
+```
+themeController.toggleTheme();
+```
+
+### Logout
+
+HomePage juga menyediakan tombol logout yang akan mengakhiri session pengguna.
+
+```
+supabase.auth.signOut();
+```
+
+Setelah logout, pengguna akan diarahkan kembali ke halaman login.
+
+---
+
+## FormPage
+
+FormPage digunakan untuk menambahkan barang baru ataupun mengedit data barang yang sudah ada.
+
+Halaman ini juga menggunakan `StatefulWidget` karena form memiliki data yang dapat berubah.
+
+### Input Data Barang
+
+FormPage memiliki beberapa field input yaitu:
+- Nama Barang
+- Harga Jual
+- Kondisi Barang
+- Kategori Barang
+- Upload Foto
+
+Input teks menggunakan widget `TextField`, sedangkan pilihan kondisi dan kategori menggunakan `DropdownButton`.
+
+### Upload Foto
+
+Pengguna dapat mengupload gambar menggunakan package `image_picker`.
+
+```
+final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+```
+
+Gambar yang dipilih akan dibaca sebagai _byte data_ kemudian dikonversi menjadi _Base64_ sebelum disimpan ke database.
+
+### Menyimpan Data
+
+Ketika tombol Simpan ditekan, data dari form akan dikemas ke dalam bentuk Map.
+
+Jika form dalam mode tambah barang maka aplikasi akan memanggil:
+
+`addItem()`
+
+Namun jika form dalam mode edit maka aplikasi akan memanggil:
+
+`updateItem()` 
+
+### Validasi Harga
+
+Harga hanya dapat diisi angka dengan bantuan:
+
+```
+FilteringTextInputFormatter.digitsOnly
+```
+
+Selain itu, aplikasi juga memeriksa apakah harga lebih besar dari 0 sebelum data disimpan.
+
+Hal ini memastikan pengguna tidak memasukkan harga yang tidak valid.
+
+---
 </details>
