@@ -223,6 +223,8 @@ Light mode menggunakan warna yang lebih terang seperti:
 - background krem
 - card berwarna putih
 - icon coklat
+  
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/9866ef10-5c02-4e25-ac77-0d1e8b61772d" />
 
 Font utama yang digunakan adalah Poppins dari Google Fonts.
 
@@ -232,6 +234,8 @@ Dark mode menggunakan warna yang lebih gelap seperti:
 - background coklat gelap
 - card berwarna lebih gelap
 - icon berwarna terang
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/1d1757eb-65a1-423a-a6ed-3cb23503414a" />
 
 Mode ini membantu pengguna menggunakan aplikasi dengan lebih nyaman pada kondisi pencahayaan rendah.
 
@@ -397,6 +401,8 @@ Setiap halaman memiliki fungsi yang berbeda dalam alur penggunaan aplikasi.
 ## 🌟 SplashPage
 
 SplashPage merupakan halaman pertama yang ditampilkan ketika aplikasi dibuka.
+
+SS 
 
 Halaman ini berfungsi sebagai tampilan pembuka aplikasi sebelum pengguna masuk ke proses login atau pembuatan akun.
 
