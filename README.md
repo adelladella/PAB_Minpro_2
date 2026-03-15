@@ -433,7 +433,7 @@ Bagian bawah halaman berisi teks dan tombol navigasi yang mengarahkan pengguna k
 
 Teks utama ditampilkan menggunakan font _Playfair Display_ melalui package `GoogleFonts`.
 
-
+<img width="390" height="202" alt="Image" src="https://github.com/user-attachments/assets/cc66f3d0-ca07-4eac-bbb0-8c29d65b85ac" />
 
 Widget yang digunakan antara lain:
 - Column untuk menyusun elemen secara vertikal
@@ -480,6 +480,8 @@ Input tersebut diambil menggunakan `TextEditingController`.
 
 Form login menggunakan widget `TextField` untuk mengambil input dari pengguna.
 
+<img width="648" height="644" alt="Image" src="https://github.com/user-attachments/assets/dea54ad0-16a5-4935-8fe1-36355bdbd6fd" />
+
 Beberapa komponen yang digunakan pada field antara lain:
 
 - `prefixIcon` untuk menampilkan icon email dan password
@@ -495,6 +497,8 @@ await authService.login(email, password);
 ```
 
 Jika login berhasil, pengguna akan diarahkan ke halaman `HomePage`.
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/e365bf77-f165-41ba-bccf-309500abdb77" />
 
 ```
 Navigator.pushReplacement(
@@ -521,6 +525,8 @@ Pengguna diminta untuk mengisi tiga field utama:
 - nama
 - email
 - password
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/2d466129-2f3b-4712-8e2f-1ffb7b92b0c0" />
 
 Semua input diambil menggunakan `TextEditingController`.
 
@@ -554,6 +560,8 @@ RegisterPage menggunakan efek _glassmorphism_ dengan memanfaatkan widget:
 - BackdropFilter
 - ClipRRect
 
+<img width="386" height="415" alt="Image" src="https://github.com/user-attachments/assets/dd08a3ba-5337-4793-b1e4-f2e73a806cf3" />
+
 Efek blur ini membuat tampilan form terlihat lebih modern dan menarik.
 
 ---
@@ -561,6 +569,8 @@ Efek blur ini membuat tampilan form terlihat lebih modern dan menarik.
 ## 🌟 HomePage
 
 HomePage merupakan halaman utama aplikasi yang menampilkan seluruh data barang preloved yang tersimpan di database.
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/6a0d5f02-94a4-4951-ae36-366ce9d0a6e7" />
 
 Halaman ini menggunakan `StatefulWidget` karena data barang dapat berubah ketika pengguna menambahkan, mengedit, atau menghapus data.
 
@@ -613,6 +623,14 @@ Setiap barang memiliki dua status yaitu:
 
 Jika barang sudah terjual, maka status akan berubah menjadi _**SOLD**_ dan sistem akan menyimpan **tanggal penjualan**.
 
+Contoh barang jika sudah terjual:
+
+<img width="388" height="140" alt="Image" src="https://github.com/user-attachments/assets/3a139434-31bf-4905-a5b7-0591fe141c7e" />
+
+Contoh barang jika belum terjual:
+
+<img width="389" height="147" alt="Image" src="https://github.com/user-attachments/assets/bcb9a244-4b63-4071-bf2f-0df0a09f8c9f" />
+
 Tanggal tersebut ditampilkan menggunakan format:
 
 ```
@@ -630,11 +648,15 @@ Kategori yang tersedia antara lain:
 - Sepatu
 - Aksesoris
 
+<img width="389" height="64" alt="Image" src="https://github.com/user-attachments/assets/b99565b0-20ed-43b0-9a26-82eed11bd506" />
+
 Filter ini dibuat menggunakan widget `ListView` dengan arah scroll _horizontal_.
 
 ### Toggle Theme
 
 Pada bagian menu terdapat fitur Toggle Theme yang digunakan untuk mengganti tampilan antara _light mode_ dan _dark mode_.
+
+<img height="500" alt="Image" src="https://github.com/user-attachments/assets/de4db385-50d5-4072-917d-08dd8207f6a8" />
 
 Fitur ini memanggil fungsi dari `ThemeController`.
 
@@ -645,6 +667,8 @@ themeController.toggleTheme();
 ### Logout
 
 HomePage juga menyediakan tombol logout yang akan mengakhiri session pengguna.
+
+<img width="69" height="55" alt="Image" src="https://github.com/user-attachments/assets/1246ffd0-7fa3-4f41-8412-f6374402b38d" />
 
 ```
 supabase.auth.signOut();
