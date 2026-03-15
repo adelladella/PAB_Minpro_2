@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
 
       body: Stack(
         children: [
-          /// background
+          
           Positioned.fill(
             child: Image.asset(
               "assets/images/onboarding.png",
@@ -68,13 +68,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
 
-          /// blur overlay
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
             child: Container(color: Colors.black.withOpacity(0.1)),
           ),
 
-          /// login card
           Center(
             child: Container(
               width: 320,
